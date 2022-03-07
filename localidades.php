@@ -16,7 +16,7 @@
         $conexion=mysqli_connect ($servidor, $usuario, $clave, $base_datos) or die ("No conecta con la base de datos");
 
         $consulta = "select l.nombre from localidades l, 
-                    provincias p where l.n_provincia=p.n_provincia and p.nombre='{$_GET['provincia']}' 
+                    provincias p where l.n_provincia=p.n_provincia and p.nombre='{$_GET['provincias']}' 
                     order by nombre;";
 
         $resultado = mysqli_query($conexion, $consulta);
