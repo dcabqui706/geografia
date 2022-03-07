@@ -15,31 +15,25 @@
 
         $conexion=mysqli_connect ($servidor, $usuario, $clave, $base_datos) or die ("No conecta con la base de datos");
 
-        $consulta= "select localidades.nombre
-                    from provincias, localidades
-                    where provincias.n_provincia = localidades.n_provincia
-                    and provincias.nombre = '{$_GET["provincias"]}'
-                    order by localidades.nombre;";
-        $resultado=mysqli_query ($conexion, $consulta);
-        $num_filas=mysqli_num_rows ($resultado);
+        $consulta = "select l.nombre from localidades l, 
+                    provincias p where l.n_provincia=p.n_provincia and p.nombre='{$_GET['provincias']}' 
+                    order by nombre;";
 
-        if ($num_filas>0) {
-            
-    ?>
+        $resultado = mysqli_query($conexion, $consulta);
+        
+        $num_filas = mysqli_num_rows($resultado);
 
-    <form action="comunidades.php">
-        <label for="provincias">Elija la comunidad deseada</label>
-        <select name="localidades" id="localidades">
-            <?php
-
-                while ($fila=mysqli_fetch_assoc ($resultado))
-                    echo "<option value='{$fila["nombre"]}'>{$fila ["nombre"]}</option>";
-
-            ?>
-        </select>
-        <button onclick=>Buscar localidades</button>
+        if($num_filas > 0){?>
+            <form>
+            <label for="localidades">Elija la localidad deseada</label>
+            <select name="localidades" id="localidades">
+                <?php
+                    while ($fila= mysqli_fetch_assoc ($resultado))
+                            echo "<option value = '{$fila["nombre"]}'> {$fila["nombre"]} </option>";
+                ?>
+            </select>
+            <button onclick=>Buscar localidades</button>
     </form>    
-    
     <?php
         } else {
             echo "No hay datos en las tablas";
