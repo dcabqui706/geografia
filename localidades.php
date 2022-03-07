@@ -37,15 +37,18 @@
 
             ?>
         </select>
-        <button>Volver A Comunidades</button>
-            
-        
-    </form>
-
+        <button onclick=>Buscar localidades</button>
+    </form>    
+    
     <?php
+        } else {
+            echo "No hay datos en las tablas";
         }
-        else
-            echo "No hay datos en la tabla";
+
+        function habitantes(){
+            $consultaHabitantes = "select nombre, poblacion from localidades;";
+            echo "El nombre y la población seleccinados son:" . $consultaHabitantes;
+        }
 
     ?>
 
