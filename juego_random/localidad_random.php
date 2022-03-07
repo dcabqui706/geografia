@@ -56,9 +56,12 @@
     <?php
             $porcentaje=$aciertos/$intentos*100;
             echo "Aciertos = $aciertos, Intentos = $intentos, Porcentaje = $porcentaje%";
-        } else {
+        } 
+        
+        else {
             echo "No hay datos actualmente en la base de datos.";
-        }    
+        }
+        
     ?>
 
 </form>
