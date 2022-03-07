@@ -31,7 +31,7 @@
 
         if (mysqli_num_rows($resultado) > 0) { //Si la tabla tiene datos...
     ?>
-            <h3>Adivina la provincia</h3>
+            </br><h1>Adivina la provincia</h1>
             <form action=comprobar.php> 
                 <label>Localidad:</label>
                 <?php
