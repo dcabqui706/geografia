@@ -40,7 +40,9 @@
         }
 
         function habitantes(){
-            $consultaHabitantes = "select nombre, poblacion from localidades;";
+            $consultaHabitantes = "select nombre, poblacion
+                                from localidades;";
+
             echo "El nombre y la población seleccinados son:" . $consultaHabitantes;
         }
 
