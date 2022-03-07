@@ -12,7 +12,7 @@
 
         include 'conexion.php'; //Incluimos los datos de la conexión
 
-        $conexion = mysqli_connect($servername, $username, $password, $database) or die ("Conexión con base de datos fallida.");
+        $conexion=mysqli_connect ($servidor, $usuario, $clave, $base_datos) or die ("No conecta con la base de datos");
         $consulta = "select p.nombre name from localidades l, provincias p where l.nombre='{$_SESSION["localidadRandom"]}' && l.n_provincia = p.n_provincia;";
         $resultado = mysqli_query($conexion, $consulta) or die ("Consulta a la base de datos fallida.");
 
@@ -40,6 +40,6 @@
         }    
     ?>
 
-    <a href="comunidades.php"> Volver a jugar </a>
+    <a href="localidad_random.php"> Volver a jugar </a>
 </body>
 </html>

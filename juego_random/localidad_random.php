@@ -32,7 +32,7 @@
         if (mysqli_num_rows($resultado) > 0) { //Si la tabla tiene datos...
     ?>
             </br><h1>Adivina la provincia</h1>
-            <form action=comprobar.php> 
+            <form action=Comprobar.php> 
                 <label>Localidad:</label>
                 <?php
                         while ($fila = mysqli_fetch_assoc ($resultado2)){
@@ -61,7 +61,7 @@
         else {
             echo "No hay datos actualmente en la base de datos.";
         }
-        
+
     ?>
 
 </form>
