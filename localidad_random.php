@@ -14,33 +14,41 @@
         include 'conexion.php'; //Incluimos los datos de la conexión
 
         $conexion=mysqli_connect ($servidor, $usuario, $clave, $base_datos) or die ("No conecta con la base de datos");
+        $consulta = "select nombre from provincias order by nombre;";
+        $resultado = mysqli_query($conexion, $consulta) or die ("Consulta a la base de datos fallida.");
+        $consulta2 = "select nombre from localidades order by rand () limit 1;";
+        $resultado2 = mysqli_query($conexion, $consulta2) or die ("Consulta a la base de datos fallida.");
 
-        $cadena = "select count(n_provincia) from provincia";
-
-        $consulta = "select nombre from provincias order by nombre";
-
-        $resultado = mysqli_query($conexion, $consulta);
-
-        $cadena = "select nombre from localidades where id_localidad = 2871";
-        
-
-
-
-        
-
-        
-
-?>
-
-<h1>Adivina la provincia</h1>
-<p>Localidad</p>
-<form action="">
-    <label for="provincia">Provincia</label>
+        if (mysqli_num_rows($resultado) > 0) { //Si la tabla tiene datos...
+    ?>
+            <h3>Adivina la provincia</h3>
+            <form action=comprobar.php> 
+                <label>Localidad:</label>
+                <?php
+                        while ($fila = mysqli_fetch_assoc ($resultado2)){
+                            $localidadRandom = $fila["nombre"];
+                            echo "<b>{$fila["nombre"]}</b>";
+                        }
+                        $_SESSION["localidadRandom"]=$localidadRandom;                    
+                ?>
+                <br> <br>
+                <select name=provincia>
+                    <?php
+                        while ($fila = mysqli_fetch_assoc ($resultado)){
+                            echo "<option value='{$fila["nombre"]}'>{$fila["nombre"]}</option>";
+                        }                    
+                    ?>
+                </select>
+                <br> <br>
+                <button>Comprobar</button>
+                <br> <br>
+            </form>
     <?php
-
-    while ($fila=mysqli_fetch_assoc ($resultado))
-        echo "<option id='{$fila["nombre"]}' value='{$fila["nombre"]}'>{$fila ["nombre"]}</option>";
-
+            $porcentaje=$aciertos/$intentos*100;
+            echo "Aciertos = $aciertos, Intentos = $intentos, Porcentaje = $porcentaje%";
+        } else {
+            echo "No hay datos actualmente en la base de datos.";
+        }    
     ?>
 
 </form>
