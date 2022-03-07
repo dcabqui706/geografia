@@ -20,7 +20,7 @@
                     order by nombre;";
 
         $resultado = mysqli_query($conexion, $consulta);
-        
+
         $num_filas = mysqli_num_rows($resultado);
 
         if($num_filas > 0){?>
