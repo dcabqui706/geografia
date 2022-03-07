@@ -11,6 +11,16 @@
 
 
 <?php 
+        session_start();
+        $aciertos=0;
+        if(isset($_SESSION["aciertos"])){
+            $aciertos=$_SESSION["aciertos"];
+        }
+        $intentos=0;
+        if(isset($_SESSION["intentos"])){
+            $intentos=$_SESSION["intentos"];
+        }
+
         include 'conexion.php'; //Incluimos los datos de la conexión
 
         $conexion=mysqli_connect ($servidor, $usuario, $clave, $base_datos) or die ("No conecta con la base de datos");
