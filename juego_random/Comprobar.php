@@ -16,7 +16,7 @@
         $consulta = "select p.nombre name from localidades l, provincias p where l.nombre='{$_SESSION["localidadRandom"]}' && l.n_provincia = p.n_provincia;";
         $resultado = mysqli_query($conexion, $consulta) or die ("Consulta a la base de datos fallida.");
 
-        if (mysqli_num_rows($resultado) > 0) { //Si la tabla tiene datos...
+        if (mysqli_num_rows($resultado) > 0) {
     ?>
             <?php
                 while ($fila = mysqli_fetch_assoc ($resultado)){
